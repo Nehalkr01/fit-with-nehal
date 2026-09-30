@@ -2,162 +2,90 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fit With Nehal — Winter Arc 2026</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,Arial,sans-serif;background:#080b12;color:#f5f7fb;min-height:100vh}
-.container{max-width:1050px;margin:auto;padding:24px 16px 50px}
-.hero{background:linear-gradient(135deg,#151b2d,#0d111c);border:1px solid #252d40;border-radius:24px;padding:28px;box-shadow:0 15px 45px #0007}
-.badge{display:inline-block;padding:7px 12px;border-radius:99px;background:#1d2638;color:#9fe8ff;font-size:12px;font-weight:700;letter-spacing:.5px}
-h1{font-size:clamp(32px,7vw,56px);margin:14px 0 5px}
-.sub{color:#aeb7c9;font-size:15px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
-.stat{background:#101624;border:1px solid #242c3c;border-radius:16px;padding:15px}
-.stat b{display:block;font-size:24px;margin-bottom:4px}
-.stat span{color:#929db1;font-size:12px}
-.section{margin-top:18px;background:#10151f;border:1px solid #222b3c;border-radius:20px;padding:20px}
-.section h2{font-size:20px;margin-bottom:15px}
-.progress-wrap{height:13px;background:#202737;border-radius:20px;overflow:hidden}
-.progress{height:100%;width:0;background:linear-gradient(90deg,#58e6a8,#63c7ff);transition:.3s}
-.progress-text{display:flex;justify-content:space-between;color:#9da8bb;font-size:13px;margin-top:8px}
-.tasks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.task{display:flex;align-items:center;gap:12px;padding:14px;background:#151c29;border:1px solid #273044;border-radius:14px;cursor:pointer;transition:.2s}
-.task:hover{transform:translateY(-1px);border-color:#3b4964}
-.task input{width:20px;height:20px;accent-color:#58e6a8}
-.task strong{font-size:14px}
-.task small{display:block;color:#8e99ad;margin-top:3px;font-size:11px}
-.day-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}
-button{border:0;border-radius:12px;padding:11px 15px;background:#1c2637;color:white;cursor:pointer;font-weight:700}
-button.primary{background:#58e6a8;color:#07120d}
-button.danger{background:#30202a;color:#ff9cae}
-select{background:#151c29;color:white;border:1px solid #303a50;border-radius:12px;padding:11px}
-.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
-.cal-day{min-height:62px;background:#151c29;border:1px solid #263044;border-radius:10px;padding:8px;font-size:11px;cursor:pointer}
-.cal-day.done{background:#153328;border-color:#3e9e75}
-.cal-day.today{outline:2px solid #63c7ff}
-.cal-day .num{font-weight:800;font-size:14px}
-.cal-day .pct{color:#8f9aae;margin-top:5px}
-.note{color:#7f8ba0;font-size:12px;line-height:1.5}
-.footer{text-align:center;color:#69758a;font-size:12px;margin-top:25px}
-@media(max-width:650px){
- .container{padding:12px 10px 35px}.hero{padding:22px 17px;border-radius:20px}
- .stats{grid-template-columns:repeat(2,1fr)}.tasks{grid-template-columns:1fr}
- .section{padding:15px}.calendar{gap:4px}.cal-day{min-height:54px;padding:6px}
-}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#070a10;color:#f7f9fc}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 10%,#12304b 0,transparent 32%),radial-gradient(circle at 85% 20%,#193d31 0,transparent 30%),#070a10}
+.wrap{max-width:1100px;margin:auto;padding:18px 14px 45px}.hero{padding:26px;border:1px solid #263246;border-radius:28px;background:#0d131eaa;backdrop-filter:blur(14px);box-shadow:0 20px 60px #0008}
+.top{display:flex;justify-content:space-between;gap:15px;align-items:center}.pill{padding:8px 12px;border:1px solid #314056;background:#141d2c;border-radius:99px;color:#8eeaff;font-size:11px;font-weight:800;letter-spacing:.7px}
+h1{font-size:clamp(35px,7vw,62px);line-height:1;margin:18px 0 7px;letter-spacing:-2px}.sub{color:#9ba8bb;margin:0}.quote{margin-top:18px;color:#dbe5f2;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:22px}.card{padding:16px;border:1px solid #263246;background:#101722;border-radius:17px}.card b{font-size:25px}.card small{display:block;color:#8491a5;margin-top:4px}
+.section{margin-top:16px;padding:20px;border:1px solid #263246;background:#0d131ddd;border-radius:22px}.section h2{margin:0 0 15px;font-size:20px}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}select,button{font:inherit;border-radius:12px;padding:11px 14px;border:1px solid #303d52;background:#151e2c;color:#fff;font-weight:700}button{cursor:pointer}button.primary{background:#5ce6aa;color:#07120d;border-color:#5ce6aa}button.red{background:#2d1b24;color:#ffadbd}
+.mainprog{display:flex;align-items:center;gap:22px}.circle{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#5ce6aa 0deg,#5ce6aa 0deg,#202b3c 0deg);position:relative;flex:none}.circle:after{content:"";position:absolute;inset:10px;background:#0d131e;border-radius:50%}.circle span{position:relative;z-index:1;font-size:23px;font-weight:900}.barbox{flex:1}.bar{height:13px;background:#202a3a;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#5ce6aa,#62c8ff);transition:.3s}
+.meta{display:flex;justify-content:space-between;color:#8f9bad;font-size:12px;margin-top:8px}.tasks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}.task{display:flex;gap:12px;align-items:center;padding:14px;background:#131b28;border:1px solid #29364b;border-radius:15px;cursor:pointer}.task:hover{border-color:#50627e;transform:translateY(-1px)}.task input{width:20px;height:20px;accent-color:#5ce6aa}.task strong{font-size:14px}.task small{display:block;color:#8793a6;font-size:11px;margin-top:3px}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.day{padding:9px 6px;min-height:64px;border:1px solid #273347;background:#131b27;border-radius:10px;cursor:pointer;font-size:11px}.day b{font-size:14px}.day small{display:block;color:#8491a4;margin-top:4px}.day.done{background:#123427;border-color:#3f9c76}.day.sel{outline:2px solid #62c8ff}
+.legend{display:flex;gap:16px;flex-wrap:wrap;color:#8e9aac;font-size:12px;margin-top:12px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:#3f9c76}
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.rule{padding:13px 15px;border-radius:13px;background:#121a27;border:1px solid #273347;color:#c8d1df;font-size:13px}
+.footer{text-align:center;color:#667389;font-size:12px;margin-top:25px}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.tasks,.rules{grid-template-columns:1fr}.mainprog{align-items:flex-start}.circle{width:95px;height:95px}.circle:after{inset:8px}.circle span{font-size:19px}.calendar{grid-template-columns:repeat(7,1fr);gap:4px}.day{min-height:55px;padding:6px 4px}}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="hero">
-    <span class="badge">92 DAY WINTER ARC • 01 OCT — 31 DEC 2026</span>
-    <h1>Fit With Nehal</h1>
-    <p class="sub">Discipline • Study • Coding • Fitness • English • Consistency</p>
-    <div class="stats">
-      <div class="stat"><b id="streak">0</b><span>Current Streak 🔥</span></div>
-      <div class="stat"><b id="completedDays">0</b><span>Days Completed</span></div>
-      <div class="stat"><b id="overall">0%</b><span>Overall Progress</span></div>
-      <div class="stat"><b id="best">0</b><span>Best Streak</span></div>
-    </div>
-  </div>
+<div class="wrap">
+<section class="hero">
+ <div class="top"><span class="pill">92 DAYS • 01 OCT — 31 DEC 2026</span><span class="pill">FIT WITH NEHAL</span></div>
+ <h1>Winter Arc 2026</h1><p class="sub">Study hard. Code daily. Build yourself.</p>
+ <p class="quote" id="quote">Small progress every day becomes a completely different life.</p>
+ <div class="grid">
+  <div class="card"><b id="streak">0</b><small>Current Streak 🔥</small></div>
+  <div class="card"><b id="best">0</b><small>Best Streak 🏆</small></div>
+  <div class="card"><b id="done">0</b><small>Perfect Days ✅</small></div>
+  <div class="card"><b id="overall">0%</b><small>Overall Progress 📈</small></div>
+ </div>
+</section>
 
-  <div class="section">
-    <h2>Today's Progress</h2>
-    <div class="day-controls">
-      <select id="daySelect"></select>
-      <button class="primary" onclick="completeAll()">Complete All</button>
-      <button onclick="clearDay()">Reset Day</button>
-    </div>
-    <div class="progress-wrap"><div class="progress" id="bar"></div></div>
-    <div class="progress-text"><span id="dayLabel">Day 1</span><span id="dayPct">0%</span></div>
-    <div class="tasks" id="tasks"></div>
-  </div>
+<section class="section">
+ <h2>Daily Mission</h2>
+ <div class="controls">
+  <select id="select"></select><button class="primary" onclick="allDone()">Complete All</button><button onclick="resetDay()">Reset Day</button>
+ </div>
+ <div class="mainprog">
+  <div class="circle" id="circle"><span id="cp">0%</span></div>
+  <div class="barbox"><div class="bar"><div class="fill" id="fill"></div></div><div class="meta"><span id="label">Day 1</span><span id="pct">0%</span></div></div>
+ </div>
+ <div class="tasks" id="tasks"></div>
+</section>
 
-  <div class="section">
-    <h2>Winter Arc Calendar</h2>
-    <div class="calendar" id="calendar"></div>
-  </div>
+<section class="section">
+ <h2>92-Day Calendar</h2><div class="calendar" id="calendar"></div>
+ <div class="legend"><span><i class="dot"></i>Perfect day</span><span>Tap any day to edit it</span></div>
+</section>
 
-  <div class="section">
-    <h2>My Rules</h2>
-    <p class="note">
-      Every day: finish your study targets, code for at least 30 minutes, practice spoken English for at least 39 minutes,
-      stay away from social media, avoid unnecessary time waste, exercise, hydrate and maintain healthy sleep.
-      The tracker saves your progress automatically in this browser.
-    </p>
-  </div>
-
-  <div class="footer">Built for Nehal • Winter Arc 2026 • Stay consistent.</div>
+<section class="section">
+ <h2>My Non-Negotiables</h2>
+ <div class="rules">
+  <div class="rule">🏋️ Workout every day</div><div class="rule">💧 Stay hydrated</div>
+  <div class="rule">😴 Maintain sleep routine</div><div class="rule">📚 Complete daily study targets</div>
+  <div class="rule">💻 Coding — minimum 30 minutes</div><div class="rule">🇬🇧 Spoken English — minimum 39 minutes</div>
+  <div class="rule">🚫 No social media</div><div class="rule">⏳ No unnecessary time waste</div>
+ </div>
+</section>
+<div class="footer">Fit With Nehal • Your 92-day challenge starts with one disciplined day.</div>
 </div>
-
 <script>
 const tasks=[
- ["🏋️","Workout","Complete your planned workout"],
- ["💧","Hydration","Hit your daily water target"],
- ["😴","Sleep","Maintain your planned sleep routine"],
- ["📚","Study Targets","Complete ALL daily study targets"],
- ["💻","Coding — 30 min","Minimum 30 minutes of coding"],
- ["🇬🇧","Spoken English — 39 min","Minimum 39 minutes speaking practice"],
- ["🚫","No Social Media","No unnecessary social-media scrolling"],
- ["⏳","No Time Waste","Avoid unnecessary time-wasting"]
-];
-const start=new Date(2026,9,1);
-const days=92;
-let data=JSON.parse(localStorage.getItem("fitWithNehal2026")||"{}");
-let selected=Number(localStorage.getItem("selectedDay")||0);
-
-function key(i){return "d"+i}
-function state(i){return data[key(i)]||Array(tasks.length).fill(false)}
-function save(){localStorage.setItem("fitWithNehal2026",JSON.stringify(data));update()}
-function pct(i){let a=state(i);return Math.round(a.filter(Boolean).length/tasks.length*100)}
-function dateFor(i){let d=new Date(start);d.setDate(start.getDate()+i);return d}
-function fmt(d){return d.toLocaleDateString("en-IN",{day:"2-digit",month:"short"})}
-
-function renderSelect(){
- let s=document.getElementById("daySelect");s.innerHTML="";
- for(let i=0;i<days;i++){let o=document.createElement("option");o.value=i;o.textContent=`Day ${i+1} — ${fmt(dateFor(i))}`;s.appendChild(o)}
- s.value=selected;s.onchange=()=>{selected=+s.value;localStorage.setItem("selectedDay",selected);renderTasks()}
-}
-function renderTasks(){
- const a=state(selected), wrap=document.getElementById("tasks");wrap.innerHTML="";
- tasks.forEach((t,i)=>{
-  let label=document.createElement("label");label.className="task";
-  label.innerHTML=`<input type="checkbox" ${a[i]?"checked":""}><div><strong>${t[0]} ${t[1]}</strong><small>${t[2]}</small></div>`;
-  label.querySelector("input").onchange=e=>{a[i]=e.target.checked;data[key(selected)]=a;save()};
-  wrap.appendChild(label);
- });
- document.getElementById("dayLabel").textContent=`Day ${selected+1} • ${fmt(dateFor(selected))}`;
- document.getElementById("dayPct").textContent=pct(selected)+"%";
- document.getElementById("bar").style.width=pct(selected)+"%";
-}
-function completeAll(){data[key(selected)]=Array(tasks.length).fill(true);save();renderTasks()}
-function clearDay(){data[key(selected)]=Array(tasks.length).fill(false);save();renderTasks()}
-
-function streak(){
- let s=0;for(let i=days-1;i>=0;i--){if(pct(i)===100)s++;else break}return s
-}
-function bestStreak(){
- let best=0,cur=0;for(let i=0;i<days;i++){if(pct(i)===100){cur++;best=Math.max(best,cur)}else cur=0}return best
-}
-function update(){
- let done=0,total=days*tasks.length,points=0;
- for(let i=0;i<days;i++){let p=pct(i);points+=state(i).filter(Boolean).length;if(p===100)done++}
- document.getElementById("completedDays").textContent=done;
- document.getElementById("overall").textContent=Math.round(points/total*100)+"%";
- document.getElementById("streak").textContent=streak();
- document.getElementById("best").textContent=bestStreak();
- renderCalendar();
-}
-function renderCalendar(){
- let c=document.getElementById("calendar");c.innerHTML="";
- for(let i=0;i<days;i++){
-  let d=document.createElement("div");d.className="cal-day"+(pct(i)===100?" done":"")+(i===selected?" today":"");
-  d.innerHTML=`<div class="num">${i+1}</div><div>${fmt(dateFor(i))}</div><div class="pct">${pct(i)}%</div>`;
-  d.onclick=()=>{selected=i;document.getElementById("daySelect").value=i;localStorage.setItem("selectedDay",i);renderTasks();renderCalendar()};
-  c.appendChild(d);
- }
-}
-renderSelect();renderTasks();update();
+["🏋️","Workout","Complete your planned workout"],["💧","Hydration","Hit your daily water target"],["😴","Sleep","Maintain your planned sleep routine"],
+["📚","Study Targets","Complete ALL daily study targets"],["💻","Coding — 30 min","Minimum 30 minutes of coding"],
+["🇬🇧","Spoken English — 39 min","Minimum 39 minutes speaking practice"],["🚫","No Social Media","No unnecessary social-media scrolling"],["⏳","No Time Waste","Avoid unnecessary time-wasting"]];
+const quotes=["Small progress every day becomes a completely different life.","Discipline today. Confidence tomorrow.","You do not need a perfect day. You need a consistent one.","Focus on the next task, not the whole 92 days.","Build the version of Nehal you want to become."];
+const start=new Date(2026,9,1),days=92;let data=JSON.parse(localStorage.getItem("fitWithNehal2026")||"{}");let selected=+(localStorage.getItem("selectedDay")||0);
+const key=i=>"d"+i, state=i=>data[key(i)]||Array(tasks.length).fill(false);
+const date=i=>{let d=new Date(start);d.setDate(start.getDate()+i);return d};
+const fmt=d=>d.toLocaleDateString("en-IN",{day:"2-digit",month:"short"});
+const pct=i=>Math.round(state(i).filter(Boolean).length/tasks.length*100);
+function save(){localStorage.setItem("fitWithNehal2026",JSON.stringify(data));render();renderStats()}
+function renderSelect(){let s=document.getElementById("select");s.innerHTML="";for(let i=0;i<days;i++){let o=document.createElement("option");o.value=i;o.textContent=`Day ${i+1} — ${fmt(date(i))}`;s.appendChild(o)}s.value=selected;s.onchange=()=>{selected=+s.value;localStorage.setItem("selectedDay",selected);render()}}
+function render(){let a=state(selected),p=pct(selected);document.getElementById("select").value=selected;document.getElementById("label").textContent=`Day ${selected+1} • ${fmt(date(selected))}`;document.getElementById("pct").textContent=p+"%";document.getElementById("cp").textContent=p+"%";document.getElementById("fill").style.width=p+"%";document.getElementById("circle").style.background=`conic-gradient(#5ce6aa ${p*3.6}deg,#202b3c ${p*3.6}deg)`;
+let w=document.getElementById("tasks");w.innerHTML="";tasks.forEach((t,i)=>{let l=document.createElement("label");l.className="task";l.innerHTML=`<input type="checkbox" ${a[i]?"checked":""}><div><strong>${t[0]} ${t[1]}</strong><small>${t[2]}</small></div>`;l.querySelector("input").onchange=e=>{a[i]=e.target.checked;data[key(selected)]=a;save()};w.appendChild(l)});
+let c=document.getElementById("calendar");c.innerHTML="";for(let i=0;i<days;i++){let d=document.createElement("div");d.className="day"+(pct(i)===100?" done":"")+(i===selected?" sel":"");d.innerHTML=`<b>${i+1}</b><small>${fmt(date(i))}</small><small>${pct(i)}%</small>`;d.onclick=()=>{selected=i;localStorage.setItem("selectedDay",i);render()};c.appendChild(d)}}
+function streak(){let s=0;for(let i=days-1;i>=0;i--){if(pct(i)===100)s++;else break}return s}
+function best(){let b=0,c=0;for(let i=0;i<days;i++){if(pct(i)===100){c++;b=Math.max(b,c)}else c=0}return b}
+function renderStats(){let points=0,done=0;for(let i=0;i<days;i++){points+=state(i).filter(Boolean).length;if(pct(i)===100)done++}document.getElementById("streak").textContent=streak();document.getElementById("best").textContent=best();document.getElementById("done").textContent=done;document.getElementById("overall").textContent=Math.round(points/(days*tasks.length)*100)+"%";document.getElementById("quote").textContent=quotes[Math.floor(selected/7)%quotes.length]}
+function allDone(){data[key(selected)]=Array(tasks.length).fill(true);save()}
+function resetDay(){data[key(selected)]=Array(tasks.length).fill(false);save()}
+renderSelect();render();renderStats();
 </script>
 </body>
 </html>
