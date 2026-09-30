@@ -2,90 +2,184 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fit With Nehal — Winter Arc 2026</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#070a10;color:#f7f9fc}
-body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 10%,#12304b 0,transparent 32%),radial-gradient(circle at 85% 20%,#193d31 0,transparent 30%),#070a10}
-.wrap{max-width:1100px;margin:auto;padding:18px 14px 45px}.hero{padding:26px;border:1px solid #263246;border-radius:28px;background:#0d131eaa;backdrop-filter:blur(14px);box-shadow:0 20px 60px #0008}
-.top{display:flex;justify-content:space-between;gap:15px;align-items:center}.pill{padding:8px 12px;border:1px solid #314056;background:#141d2c;border-radius:99px;color:#8eeaff;font-size:11px;font-weight:800;letter-spacing:.7px}
-h1{font-size:clamp(35px,7vw,62px);line-height:1;margin:18px 0 7px;letter-spacing:-2px}.sub{color:#9ba8bb;margin:0}.quote{margin-top:18px;color:#dbe5f2;font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:22px}.card{padding:16px;border:1px solid #263246;background:#101722;border-radius:17px}.card b{font-size:25px}.card small{display:block;color:#8491a5;margin-top:4px}
-.section{margin-top:16px;padding:20px;border:1px solid #263246;background:#0d131ddd;border-radius:22px}.section h2{margin:0 0 15px;font-size:20px}
-.controls{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}select,button{font:inherit;border-radius:12px;padding:11px 14px;border:1px solid #303d52;background:#151e2c;color:#fff;font-weight:700}button{cursor:pointer}button.primary{background:#5ce6aa;color:#07120d;border-color:#5ce6aa}button.red{background:#2d1b24;color:#ffadbd}
-.mainprog{display:flex;align-items:center;gap:22px}.circle{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#5ce6aa 0deg,#5ce6aa 0deg,#202b3c 0deg);position:relative;flex:none}.circle:after{content:"";position:absolute;inset:10px;background:#0d131e;border-radius:50%}.circle span{position:relative;z-index:1;font-size:23px;font-weight:900}.barbox{flex:1}.bar{height:13px;background:#202a3a;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#5ce6aa,#62c8ff);transition:.3s}
-.meta{display:flex;justify-content:space-between;color:#8f9bad;font-size:12px;margin-top:8px}.tasks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}.task{display:flex;gap:12px;align-items:center;padding:14px;background:#131b28;border:1px solid #29364b;border-radius:15px;cursor:pointer}.task:hover{border-color:#50627e;transform:translateY(-1px)}.task input{width:20px;height:20px;accent-color:#5ce6aa}.task strong{font-size:14px}.task small{display:block;color:#8793a6;font-size:11px;margin-top:3px}
-.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.day{padding:9px 6px;min-height:64px;border:1px solid #273347;background:#131b27;border-radius:10px;cursor:pointer;font-size:11px}.day b{font-size:14px}.day small{display:block;color:#8491a4;margin-top:4px}.day.done{background:#123427;border-color:#3f9c76}.day.sel{outline:2px solid #62c8ff}
-.legend{display:flex;gap:16px;flex-wrap:wrap;color:#8e9aac;font-size:12px;margin-top:12px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:#3f9c76}
-.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.rule{padding:13px 15px;border-radius:13px;background:#121a27;border:1px solid #273347;color:#c8d1df;font-size:13px}
-.footer{text-align:center;color:#667389;font-size:12px;margin-top:25px}
-@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.tasks,.rules{grid-template-columns:1fr}.mainprog{align-items:flex-start}.circle{width:95px;height:95px}.circle:after{inset:8px}.circle span{font-size:19px}.calendar{grid-template-columns:repeat(7,1fr);gap:4px}.day{min-height:55px;padding:6px 4px}}
+:root{
+ --bg:#030914;--panel:#071425;--panel2:#0a182b;--line:#12345a;
+ --text:#eef7ff;--muted:#91a4bb;--green:#19e59a;--blue:#18a8ff;
+ --purple:#775cff;--orange:#ff9d32;--pink:#f33fbb;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 65% 0%,#0b2340 0,#030914 38%,#02060d 100%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+button,select{font:inherit}
+.app{display:flex;min-height:100vh}
+.sidebar{width:265px;position:fixed;left:0;top:0;bottom:0;background:linear-gradient(180deg,#041020,#020813);border-right:1px solid #0d2745;padding:24px 16px;z-index:5}
+.brand{display:flex;align-items:center;gap:12px;margin:0 8px 30px}.brand-icon{font-size:31px;color:var(--green)}.brand h2{margin:0;font-size:23px}.brand h2 span{color:var(--green)}.brand p{margin:4px 0 0;color:#9eb0c5;font-size:13px}
+.nav{display:grid;gap:8px}.nav button{border:0;background:transparent;color:#c6d4e5;text-align:left;padding:13px 14px;border-radius:10px;cursor:pointer;font-size:15px}.nav button:hover,.nav button.active{background:linear-gradient(90deg,#064f4d,#073040);color:var(--green)}
+.nav button span{display:inline-block;width:28px;font-size:18px}
+.sidebar-bottom{position:absolute;bottom:25px;left:25px;right:25px}.winter{color:#d8e7f7;font-weight:700}.winter small{display:block;color:#8fa3ba;margin-top:6px}.mini-progress{height:7px;background:#16283e;border-radius:20px;margin:15px 0 8px;overflow:hidden}.mini-progress div{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));width:0}
+.main{margin-left:265px;width:calc(100% - 265px);padding:18px 22px 34px}
+.hero{height:180px;border:1px solid #11365b;border-radius:14px;position:relative;overflow:hidden;padding:27px 30px;background:linear-gradient(180deg,#09203a88,#061020),radial-gradient(circle at 75% 85%,#ff9f2b66 0,transparent 17%),linear-gradient(135deg,#0a213a,#07101d 55%,#02070e)}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:-20px;height:100px;background:linear-gradient(150deg,transparent 25%,#0b2844 26%,#061321 46%,transparent 47%),linear-gradient(25deg,transparent 48%,#0c2b47 49%,#071321 66%,transparent 67%);opacity:.85}
+.hero-content{position:relative;z-index:2}.hero h1{font-size:31px;margin:0 0 7px}.hero p{font-size:16px;color:#d3dfec;margin:0}.date{position:absolute;right:24px;top:22px;padding:9px 13px;border:1px solid #1b5b91;background:#07172aee;border-radius:9px;font-size:12px}.hero-quote{position:absolute;right:26px;bottom:25px;z-index:3;font-style:italic;color:#fff;font-size:15px;text-align:right;max-width:245px}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;margin-top:13px}.card{min-height:157px;background:linear-gradient(145deg,#061322,#07101d);border:1px solid #103e68;border-radius:13px;padding:17px;position:relative;overflow:hidden}.card h3{margin:8px 0 9px;font-size:14px}.card .big{font-size:28px;font-weight:800}.card small{color:#9aadc3}.icon{font-size:28px}.green{color:var(--green)}.orange{color:var(--orange)}.purple{color:#9079ff}.cyan{color:#16e0db}.pink{color:#ff55c8}
+.ring{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;margin:auto;background:conic-gradient(var(--green) 0deg,#10283f 0deg)}.ring:before{content:"";position:absolute;width:68px;height:68px;border-radius:50%;background:#07111e}.ring span{position:relative;z-index:1;font-weight:800;font-size:20px}.card.center{text-align:center}
+.motivation{background:linear-gradient(145deg,#063a36,#06231f);border-color:#067d6e}.motivation h3{color:#73ffe0}.motivation p{font-size:17px;font-weight:700;line-height:1.35}.motivation small{color:#8caeaa}
+.body-grid{display:grid;grid-template-columns:1.45fr 1fr .72fr;gap:13px;margin-top:13px}.panel{background:linear-gradient(145deg,#061322,#050d18);border:1px solid #10365c;border-radius:13px;padding:17px;min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #12304e;padding-bottom:13px;margin-bottom:4px}.panel h2{font-size:17px;margin:0}.panel-head small{color:#a1b2c7}
+.task{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;padding:11px 4px;border-bottom:1px solid #0d263f}.task:last-child{border:0}.check{width:21px;height:21px;border-radius:50%;border:2px solid #1b83bd;display:grid;place-items:center;cursor:pointer;color:#001b16}.task.done .check{background:var(--green);border-color:var(--green)}.task strong{font-size:13px}.task small{display:block;color:#859ab1;margin-top:3px}.status{padding:7px 11px;border-radius:99px;background:#073c39;color:var(--green);font-size:11px;font-weight:700}.status.pending{background:#0c2239;color:#55baff}
+.controls{display:flex;gap:8px;align-items:center}.controls select,.controls button{background:#081a2c;color:#dcecff;border:1px solid #1b4269;border-radius:8px;padding:7px 9px}.controls button{cursor:pointer}.controls button:hover{border-color:#36bfff}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.dow{font-size:10px;color:#8197ad;text-align:center;padding-bottom:4px}.cal-day{aspect-ratio:1;display:grid;place-items:center;border-radius:50%;background:#0a1a2d;color:#a6bad0;font-size:11px;cursor:pointer;border:1px solid transparent}.cal-day.done{background:#0aa77b;color:white}.cal-day.today{border:2px solid #19a8ff;box-shadow:0 0 0 2px #19a8ff33}.cal-day.selected{outline:2px solid #72eaff}.cal-day.muted{opacity:.3}
+.quotes{display:grid;gap:10px}.quote{padding:13px;border:1px solid #174b5b;border-left:4px solid var(--green);border-radius:11px;background:#061a22}.quote:nth-child(2){border-left-color:var(--blue)}.quote:nth-child(3){border-left-color:var(--purple)}.quote:nth-child(4){border-left-color:var(--orange)}.quote p{margin:0;font-size:13px;line-height:1.45;font-weight:700}.quote small{display:block;margin-top:7px;color:#7e96ac}
+.bottom-grid{display:grid;grid-template-columns:2fr 1fr;gap:13px;margin-top:13px}.focus{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.focus-item{padding:13px 8px;text-align:center;background:#07182a;border:1px solid #123d62;border-radius:10px;font-size:11px}.focus-item b{display:block;margin-top:6px}.remember{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(90deg,#061b2e,#071120);border-color:#174d71}.remember strong{color:var(--green);display:block;margin-bottom:5px}.remember p{margin:0;color:#dce8f5}.slogan{font-size:16px;font-style:italic;text-align:right}
+.mobile-nav{display:none}
+@media(max-width:1100px){.sidebar{width:220px}.main{margin-left:220px;width:calc(100% - 220px)}.cards{grid-template-columns:repeat(3,1fr)}.body-grid{grid-template-columns:1fr 1fr}.quotes-panel{grid-column:1/-1}.bottom-grid{grid-template-columns:1fr}.hero-quote{display:none}}
+@media(max-width:720px){.sidebar{display:none}.main{margin-left:0;width:100%;padding:10px}.mobile-nav{display:flex;position:sticky;top:0;z-index:10;background:#040d18ee;border-bottom:1px solid #12304d;padding:9px;gap:5px;overflow:auto}.mobile-nav button{flex:0 0 auto;background:#0a192a;color:#b8c9da;border:1px solid #173752;border-radius:9px;padding:8px 11px}.cards{grid-template-columns:repeat(2,1fr)}.body-grid{grid-template-columns:1fr}.hero{height:180px;padding:22px}.hero h1{font-size:25px}.date{position:static;display:inline-block;margin-top:18px}.hero:after{display:none}.focus{grid-template-columns:repeat(3,1fr)}.remember{display:block}.slogan{text-align:left;margin-top:16px}.card{min-height:130px}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<section class="hero">
- <div class="top"><span class="pill">92 DAYS • 01 OCT — 31 DEC 2026</span><span class="pill">FIT WITH NEHAL</span></div>
- <h1>Winter Arc 2026</h1><p class="sub">Study hard. Code daily. Build yourself.</p>
- <p class="quote" id="quote">Small progress every day becomes a completely different life.</p>
- <div class="grid">
-  <div class="card"><b id="streak">0</b><small>Current Streak 🔥</small></div>
-  <div class="card"><b id="best">0</b><small>Best Streak 🏆</small></div>
-  <div class="card"><b id="done">0</b><small>Perfect Days ✅</small></div>
-  <div class="card"><b id="overall">0%</b><small>Overall Progress 📈</small></div>
- </div>
-</section>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-icon">🏋</div><div><h2>Fit With <span>Nehal</span></h2><p>Build a Better You</p></div></div>
+  <nav class="nav">
+    <button class="active">🏠 <span></span>Home</button>
+    <button>☑️ <span></span>Daily Tracker</button>
+    <button>🗓️ <span></span>Calendar</button>
+    <button>📊 <span></span>Stats</button>
+    <button>🎯 <span></span>Goals</button>
+    <button>💬 <span></span>Quotes</button>
+    <button>⚙️ <span></span>Settings</button>
+  </nav>
+  <div class="sidebar-bottom">
+    <div style="font-size:27px;line-height:1.2;color:#fff;font-style:italic">Discipline<br><span style="color:#fff">today builds</span><br>the freedom<br>tomorrow.</div>
+    <div style="height:80px;margin-top:15px;opacity:.7;font-size:48px">⛰️</div>
+    <div class="winter">❄ Winter Arc 2026<small>1 Oct 2026 — 31 Dec 2026</small></div>
+    <div class="mini-progress"><div id="mini"></div></div>
+    <small id="sideDay" style="color:#8ca1b8">Day 1 / 92</small>
+  </div>
+</aside>
 
-<section class="section">
- <h2>Daily Mission</h2>
- <div class="controls">
-  <select id="select"></select><button class="primary" onclick="allDone()">Complete All</button><button onclick="resetDay()">Reset Day</button>
- </div>
- <div class="mainprog">
-  <div class="circle" id="circle"><span id="cp">0%</span></div>
-  <div class="barbox"><div class="bar"><div class="fill" id="fill"></div></div><div class="meta"><span id="label">Day 1</span><span id="pct">0%</span></div></div>
- </div>
- <div class="tasks" id="tasks"></div>
-</section>
-
-<section class="section">
- <h2>92-Day Calendar</h2><div class="calendar" id="calendar"></div>
- <div class="legend"><span><i class="dot"></i>Perfect day</span><span>Tap any day to edit it</span></div>
-</section>
-
-<section class="section">
- <h2>My Non-Negotiables</h2>
- <div class="rules">
-  <div class="rule">🏋️ Workout every day</div><div class="rule">💧 Stay hydrated</div>
-  <div class="rule">😴 Maintain sleep routine</div><div class="rule">📚 Complete daily study targets</div>
-  <div class="rule">💻 Coding — minimum 30 minutes</div><div class="rule">🇬🇧 Spoken English — minimum 39 minutes</div>
-  <div class="rule">🚫 No social media</div><div class="rule">⏳ No unnecessary time waste</div>
- </div>
-</section>
-<div class="footer">Fit With Nehal • Your 92-day challenge starts with one disciplined day.</div>
+<div class="main">
+<div class="mobile-nav">
+ <button>🏠 Home</button><button>☑️ Tracker</button><button>🗓️ Calendar</button><button>📊 Stats</button><button>💬 Quotes</button>
 </div>
+
+<section class="hero">
+ <div class="hero-content"><h1 id="greeting">Good Morning, Nehal! 👋</h1><p id="heroSub">Discipline today builds the freedom you want tomorrow.</p><div class="date" id="todayDate">01 Oct 2026</div></div>
+ <div class="hero-quote" id="heroQuote">“Consistency beats motivation when motivation fades.”</div>
+</section>
+
+<section class="cards">
+ <div class="card center"><div class="ring" id="ring"><span id="overall">0%</span></div><h3>Overall Progress</h3><small id="overallDays">0 / 92 days</small></div>
+ <div class="card center"><div class="icon orange">🔥</div><h3 class="orange">Current Streak</h3><div class="big orange" id="streak">0 days</div><small id="best">Best: 0 days</small></div>
+ <div class="card center"><div class="icon purple">★</div><h3 class="purple">Perfect Days</h3><div class="big purple" id="perfect">0 days</div><small>(All goals done)</small></div>
+ <div class="card center"><div class="icon cyan">🎯</div><h3 class="cyan">Today's Goals</h3><div class="big cyan"><span id="goalsDone">0</span> / 8</div><div class="mini-progress"><div id="goalBar" style="width:0;background:linear-gradient(90deg,#11d7b0,#13a8ff)"></div></div></div>
+ <div class="card motivation"><div class="icon">💡</div><h3>Today's Motivation</h3><p id="motivation">Consistency beats talent, when talent doesn't work hard.</p><small>— Daily Discipline</small></div>
+</section>
+
+<section class="body-grid">
+ <div class="panel">
+  <div class="panel-head"><h2>✅ Today's Tracker</h2><div class="controls"><select id="daySelect"></select><button onclick="completeAll()">All Done</button></div></div>
+  <div id="tasks"></div>
+ </div>
+ <div class="panel">
+  <div class="cal-head"><h2>🗓️ 92-Day Calendar</h2><span style="color:#7f95ac;font-size:12px">Oct–Dec 2026</span></div>
+  <div class="cal-grid" id="calendar"></div>
+ </div>
+ <div class="panel quotes-panel">
+  <div class="panel-head"><h2>💬 Quick Quotes</h2></div>
+  <div class="quotes" id="quotes"></div>
+ </div>
+</section>
+
+<section class="bottom-grid">
+ <div class="panel"><div class="panel-head"><h2>🎯 Weekly Focus</h2><small>Non-negotiables</small></div><div class="focus">
+  <div class="focus-item">📚<b>Study</b><span>Daily targets</span></div>
+  <div class="focus-item">💻<b>Coding</b><span>30 min/day</span></div>
+  <div class="focus-item">🇬🇧<b>English</b><span>39 min/day</span></div>
+  <div class="focus-item">🏋️<b>Fitness</b><span>Daily</span></div>
+  <div class="focus-item">🚫<b>No Social</b><span>Daily</span></div>
+  <div class="focus-item">😴<b>Sleep</b><span>Consistent</span></div>
+ </div></div>
+ <div class="panel remember"><div><strong>🎯 Remember:</strong><p>You're not just building a better body,<br>you're building a better future.</p></div><div class="slogan">Stay Consistent<br>Stay Disciplined<br>Keep Going 💚</div></div>
+</section>
+</div></div>
+
 <script>
 const tasks=[
-["🏋️","Workout","Complete your planned workout"],["💧","Hydration","Hit your daily water target"],["😴","Sleep","Maintain your planned sleep routine"],
-["📚","Study Targets","Complete ALL daily study targets"],["💻","Coding — 30 min","Minimum 30 minutes of coding"],
-["🇬🇧","Spoken English — 39 min","Minimum 39 minutes speaking practice"],["🚫","No Social Media","No unnecessary social-media scrolling"],["⏳","No Time Waste","Avoid unnecessary time-wasting"]];
-const quotes=["Small progress every day becomes a completely different life.","Discipline today. Confidence tomorrow.","You do not need a perfect day. You need a consistent one.","Focus on the next task, not the whole 92 days.","Build the version of Nehal you want to become."];
-const start=new Date(2026,9,1),days=92;let data=JSON.parse(localStorage.getItem("fitWithNehal2026")||"{}");let selected=+(localStorage.getItem("selectedDay")||0);
-const key=i=>"d"+i, state=i=>data[key(i)]||Array(tasks.length).fill(false);
-const date=i=>{let d=new Date(start);d.setDate(start.getDate()+i);return d};
-const fmt=d=>d.toLocaleDateString("en-IN",{day:"2-digit",month:"short"});
-const pct=i=>Math.round(state(i).filter(Boolean).length/tasks.length*100);
-function save(){localStorage.setItem("fitWithNehal2026",JSON.stringify(data));render();renderStats()}
-function renderSelect(){let s=document.getElementById("select");s.innerHTML="";for(let i=0;i<days;i++){let o=document.createElement("option");o.value=i;o.textContent=`Day ${i+1} — ${fmt(date(i))}`;s.appendChild(o)}s.value=selected;s.onchange=()=>{selected=+s.value;localStorage.setItem("selectedDay",selected);render()}}
-function render(){let a=state(selected),p=pct(selected);document.getElementById("select").value=selected;document.getElementById("label").textContent=`Day ${selected+1} • ${fmt(date(selected))}`;document.getElementById("pct").textContent=p+"%";document.getElementById("cp").textContent=p+"%";document.getElementById("fill").style.width=p+"%";document.getElementById("circle").style.background=`conic-gradient(#5ce6aa ${p*3.6}deg,#202b3c ${p*3.6}deg)`;
-let w=document.getElementById("tasks");w.innerHTML="";tasks.forEach((t,i)=>{let l=document.createElement("label");l.className="task";l.innerHTML=`<input type="checkbox" ${a[i]?"checked":""}><div><strong>${t[0]} ${t[1]}</strong><small>${t[2]}</small></div>`;l.querySelector("input").onchange=e=>{a[i]=e.target.checked;data[key(selected)]=a;save()};w.appendChild(l)});
-let c=document.getElementById("calendar");c.innerHTML="";for(let i=0;i<days;i++){let d=document.createElement("div");d.className="day"+(pct(i)===100?" done":"")+(i===selected?" sel":"");d.innerHTML=`<b>${i+1}</b><small>${fmt(date(i))}</small><small>${pct(i)}%</small>`;d.onclick=()=>{selected=i;localStorage.setItem("selectedDay",i);render()};c.appendChild(d)}}
-function streak(){let s=0;for(let i=days-1;i>=0;i--){if(pct(i)===100)s++;else break}return s}
-function best(){let b=0,c=0;for(let i=0;i<days;i++){if(pct(i)===100){c++;b=Math.max(b,c)}else c=0}return b}
-function renderStats(){let points=0,done=0;for(let i=0;i<days;i++){points+=state(i).filter(Boolean).length;if(pct(i)===100)done++}document.getElementById("streak").textContent=streak();document.getElementById("best").textContent=best();document.getElementById("done").textContent=done;document.getElementById("overall").textContent=Math.round(points/(days*tasks.length)*100)+"%";document.getElementById("quote").textContent=quotes[Math.floor(selected/7)%quotes.length]}
-function allDone(){data[key(selected)]=Array(tasks.length).fill(true);save()}
-function resetDay(){data[key(selected)]=Array(tasks.length).fill(false);save()}
-renderSelect();render();renderStats();
+["📚","Study Targets","Complete ALL daily study targets"],
+["💻","Coding (30 min)","Minimum 30 minutes"],
+["🇬🇧","Spoken English (39 min)","Minimum 39 minutes"],
+["🏋️","Fitness / Workout","Complete today's workout"],
+["🚫","No Social Media","No unnecessary social media"],
+["⏳","No Time Waste","Avoid unnecessary time waste"],
+["💧","Hydration","Hit your daily water target"],
+["😴","Sleep","Maintain your planned sleep routine"]
+];
+const quotes=[
+["Consistency beats talent, when talent doesn't work hard.","— Unknown"],
+["Discipline is the bridge between goals and achievement.","— Jim Rohn"],
+["You don't have to be great to start, but you have to start to be great.","— Zig Ziglar"],
+["Small steps every day lead to big results.","— Daily Discipline"],
+["Consistency turns small efforts into big results.","— Unknown"],
+["One disciplined day becomes a disciplined life.","— Daily Discipline"],
+["Motivation starts the journey; consistency keeps it moving.","— Daily Discipline"],
+["Do it even when you don't feel like doing it.","— Daily Discipline"]
+];
+const start=new Date(2026,9,1), totalDays=92;
+let data=JSON.parse(localStorage.getItem("fitWithNehal2026")||"{}");
+let selected=Number(localStorage.getItem("selectedDay")||0);
+const key=i=>"d"+i;
+const getState=i=>data[key(i)]||Array(tasks.length).fill(false);
+const dateAt=i=>{let d=new Date(start);d.setDate(start.getDate()+i);return d};
+const fmt=d=>d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"});
+const pct=i=>Math.round(getState(i).filter(Boolean).length/tasks.length*100);
+
+function currentChallengeDay(){
+ const now=new Date(); const diff=Math.floor((new Date(now.getFullYear(),now.getMonth(),now.getDate())-start)/86400000);
+ return Math.max(0,Math.min(totalDays-1,diff));
+}
+function renderSelect(){
+ const s=document.getElementById("daySelect");s.innerHTML="";
+ for(let i=0;i<totalDays;i++){let o=document.createElement("option");o.value=i;o.textContent=`Day ${i+1} — ${fmt(dateAt(i))}`;s.appendChild(o)}
+ s.value=selected;s.onchange=()=>{selected=+s.value;localStorage.setItem("selectedDay",selected);render()};
+}
+function renderTasks(){
+ const a=getState(selected), w=document.getElementById("tasks");w.innerHTML="";
+ tasks.forEach((t,i)=>{
+  const row=document.createElement("div");row.className="task"+(a[i]?" done":"");
+  row.innerHTML=`<div class="check">${a[i]?"✓":""}</div><div><strong>${t[0]} ${t[1]}</strong><small>${t[2]}</small></div><div class="status ${a[i]?"":"pending"}">${a[i]?"Done":"Pending"}</div>`;
+  row.onclick=()=>{a[i]=!a[i];data[key(selected)]=a;save()};
+  w.appendChild(row);
+ });
+}
+function renderCalendar(){
+ const c=document.getElementById("calendar");c.innerHTML="";
+ ["S","M","T","W","T","F","S"].forEach(x=>{let d=document.createElement("div");d.className="dow";d.textContent=x;c.appendChild(d)});
+ let first=new Date(start).getDay();
+ for(let i=0;i<first;i++){let d=document.createElement("div");d.className="cal-day muted";c.appendChild(d)}
+ for(let i=0;i<totalDays;i++){let d=document.createElement("div");d.className="cal-day"+(pct(i)===100?" done":"")+(i===selected?" today":"");d.textContent=dateAt(i).getDate();d.onclick=()=>{selected=i;localStorage.setItem("selectedDay",i);render()};c.appendChild(d)}
+}
+function streak(){
+ let s=0;for(let i=totalDays-1;i>=0;i--){if(pct(i)===100)s++;else break}return s;
+}
+function bestStreak(){let b=0,c=0;for(let i=0;i<totalDays;i++){if(pct(i)===100){c++;b=Math.max(b,c)}else c=0}return b}
+function stats(){
+ let points=0,perfect=0;for(let i=0;i<totalDays;i++){points+=getState(i).filter(Boolean).length;if(pct(i)===100)perfect++}
+ const overall=Math.round(points/(totalDays*tasks.length)*100), p=pct(selected);
+ document.getElementById("overall").textContent=overall+"%";document.getElementById("overallDays").textContent=`${Math.round(points/tasks.length)} / 92 days`;
+ document.getElementById("ring").style.background=`conic-gradient(var(--green) ${overall*3.6}deg,#10283f ${overall*3.6}deg)`;
+ document.getElementById("streak").textContent=streak()+" days";document.getElementById("best").textContent="Best: "+bestStreak()+" days";
+ document.getElementById("perfect").textContent=perfect+" days";document.getElementById("goalsDone").textContent=getState(selected).filter(Boolean).length;
+ document.getElementById("goalBar").style.width=(p)+"%";document.getElementById("mini").style.width=overall+"%";document.getElementById("sideDay").textContent=`Day ${selected+1} / 92`;
+ const now=new Date(),h=now.getHours();document.getElementById("greeting").textContent=(h<12?"Good Morning":h<17?"Good Afternoon":"Good Evening")+", Nehal! 👋";
+ document.getElementById("todayDate").textContent=fmt(now);
+ const q=quotes[selected%quotes.length];document.getElementById("heroQuote").textContent="“"+q[0]+"”";document.getElementById("motivation").textContent=q[0];
+}
+function render(){document.getElementById("daySelect").value=selected;renderTasks();renderCalendar();stats();document.getElementById("quotes").innerHTML=quotes.slice(0,4).map(q=>`<div class="quote"><p>“${q[0]}”</p><small>${q[1]}</small></div>`).join("")}
+function save(){localStorage.setItem("fitWithNehal2026",JSON.stringify(data));render()}
+function completeAll(){data[key(selected)]=Array(tasks.length).fill(true);save()}
+renderSelect();render();
 </script>
 </body>
 </html>
