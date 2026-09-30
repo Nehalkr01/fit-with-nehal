@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fit With Nehal — Winter Arc 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:#080b12;color:#f5f7fb;min-height:100vh}
+.container{max-width:1050px;margin:auto;padding:24px 16px 50px}
+.hero{background:linear-gradient(135deg,#151b2d,#0d111c);border:1px solid #252d40;border-radius:24px;padding:28px;box-shadow:0 15px 45px #0007}
+.badge{display:inline-block;padding:7px 12px;border-radius:99px;background:#1d2638;color:#9fe8ff;font-size:12px;font-weight:700;letter-spacing:.5px}
+h1{font-size:clamp(32px,7vw,56px);margin:14px 0 5px}
+.sub{color:#aeb7c9;font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.stat{background:#101624;border:1px solid #242c3c;border-radius:16px;padding:15px}
+.stat b{display:block;font-size:24px;margin-bottom:4px}
+.stat span{color:#929db1;font-size:12px}
+.section{margin-top:18px;background:#10151f;border:1px solid #222b3c;border-radius:20px;padding:20px}
+.section h2{font-size:20px;margin-bottom:15px}
+.progress-wrap{height:13px;background:#202737;border-radius:20px;overflow:hidden}
+.progress{height:100%;width:0;background:linear-gradient(90deg,#58e6a8,#63c7ff);transition:.3s}
+.progress-text{display:flex;justify-content:space-between;color:#9da8bb;font-size:13px;margin-top:8px}
+.tasks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.task{display:flex;align-items:center;gap:12px;padding:14px;background:#151c29;border:1px solid #273044;border-radius:14px;cursor:pointer;transition:.2s}
+.task:hover{transform:translateY(-1px);border-color:#3b4964}
+.task input{width:20px;height:20px;accent-color:#58e6a8}
+.task strong{font-size:14px}
+.task small{display:block;color:#8e99ad;margin-top:3px;font-size:11px}
+.day-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+button{border:0;border-radius:12px;padding:11px 15px;background:#1c2637;color:white;cursor:pointer;font-weight:700}
+button.primary{background:#58e6a8;color:#07120d}
+button.danger{background:#30202a;color:#ff9cae}
+select{background:#151c29;color:white;border:1px solid #303a50;border-radius:12px;padding:11px}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.cal-day{min-height:62px;background:#151c29;border:1px solid #263044;border-radius:10px;padding:8px;font-size:11px;cursor:pointer}
+.cal-day.done{background:#153328;border-color:#3e9e75}
+.cal-day.today{outline:2px solid #63c7ff}
+.cal-day .num{font-weight:800;font-size:14px}
+.cal-day .pct{color:#8f9aae;margin-top:5px}
+.note{color:#7f8ba0;font-size:12px;line-height:1.5}
+.footer{text-align:center;color:#69758a;font-size:12px;margin-top:25px}
+@media(max-width:650px){
+ .container{padding:12px 10px 35px}.hero{padding:22px 17px;border-radius:20px}
+ .stats{grid-template-columns:repeat(2,1fr)}.tasks{grid-template-columns:1fr}
+ .section{padding:15px}.calendar{gap:4px}.cal-day{min-height:54px;padding:6px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="badge">92 DAY WINTER ARC • 01 OCT — 31 DEC 2026</span>
+    <h1>Fit With Nehal</h1>
+    <p class="sub">Discipline • Study • Coding • Fitness • English • Consistency</p>
+    <div class="stats">
+      <div class="stat"><b id="streak">0</b><span>Current Streak 🔥</span></div>
+      <div class="stat"><b id="completedDays">0</b><span>Days Completed</span></div>
+      <div class="stat"><b id="overall">0%</b><span>Overall Progress</span></div>
+      <div class="stat"><b id="best">0</b><span>Best Streak</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Today's Progress</h2>
+    <div class="day-controls">
+      <select id="daySelect"></select>
+      <button class="primary" onclick="completeAll()">Complete All</button>
+      <button onclick="clearDay()">Reset Day</button>
+    </div>
+    <div class="progress-wrap"><div class="progress" id="bar"></div></div>
+    <div class="progress-text"><span id="dayLabel">Day 1</span><span id="dayPct">0%</span></div>
+    <div class="tasks" id="tasks"></div>
+  </div>
+
+  <div class="section">
+    <h2>Winter Arc Calendar</h2>
+    <div class="calendar" id="calendar"></div>
+  </div>
+
+  <div class="section">
+    <h2>My Rules</h2>
+    <p class="note">
+      Every day: finish your study targets, code for at least 30 minutes, practice spoken English for at least 39 minutes,
+      stay away from social media, avoid unnecessary time waste, exercise, hydrate and maintain healthy sleep.
+      The tracker saves your progress automatically in this browser.
+    </p>
+  </div>
+
+  <div class="footer">Built for Nehal • Winter Arc 2026 • Stay consistent.</div>
+</div>
+
+<script>
+const tasks=[
+ ["🏋️","Workout","Complete your planned workout"],
+ ["💧","Hydration","Hit your daily water target"],
+ ["😴","Sleep","Maintain your planned sleep routine"],
+ ["📚","Study Targets","Complete ALL daily study targets"],
+ ["💻","Coding — 30 min","Minimum 30 minutes of coding"],
+ ["🇬🇧","Spoken English — 39 min","Minimum 39 minutes speaking practice"],
+ ["🚫","No Social Media","No unnecessary social-media scrolling"],
+ ["⏳","No Time Waste","Avoid unnecessary time-wasting"]
+];
+const start=new Date(2026,9,1);
+const days=92;
+let data=JSON.parse(localStorage.getItem("fitWithNehal2026")||"{}");
+let selected=Number(localStorage.getItem("selectedDay")||0);
+
+function key(i){return "d"+i}
+function state(i){return data[key(i)]||Array(tasks.length).fill(false)}
+function save(){localStorage.setItem("fitWithNehal2026",JSON.stringify(data));update()}
+function pct(i){let a=state(i);return Math.round(a.filter(Boolean).length/tasks.length*100)}
+function dateFor(i){let d=new Date(start);d.setDate(start.getDate()+i);return d}
+function fmt(d){return d.toLocaleDateString("en-IN",{day:"2-digit",month:"short"})}
+
+function renderSelect(){
+ let s=document.getElementById("daySelect");s.innerHTML="";
+ for(let i=0;i<days;i++){let o=document.createElement("option");o.value=i;o.textContent=`Day ${i+1} — ${fmt(dateFor(i))}`;s.appendChild(o)}
+ s.value=selected;s.onchange=()=>{selected=+s.value;localStorage.setItem("selectedDay",selected);renderTasks()}
+}
+function renderTasks(){
+ const a=state(selected), wrap=document.getElementById("tasks");wrap.innerHTML="";
+ tasks.forEach((t,i)=>{
+  let label=document.createElement("label");label.className="task";
+  label.innerHTML=`<input type="checkbox" ${a[i]?"checked":""}><div><strong>${t[0]} ${t[1]}</strong><small>${t[2]}</small></div>`;
+  label.querySelector("input").onchange=e=>{a[i]=e.target.checked;data[key(selected)]=a;save()};
+  wrap.appendChild(label);
+ });
+ document.getElementById("dayLabel").textContent=`Day ${selected+1} • ${fmt(dateFor(selected))}`;
+ document.getElementById("dayPct").textContent=pct(selected)+"%";
+ document.getElementById("bar").style.width=pct(selected)+"%";
+}
+function completeAll(){data[key(selected)]=Array(tasks.length).fill(true);save();renderTasks()}
+function clearDay(){data[key(selected)]=Array(tasks.length).fill(false);save();renderTasks()}
+
+function streak(){
+ let s=0;for(let i=days-1;i>=0;i--){if(pct(i)===100)s++;else break}return s
+}
+function bestStreak(){
+ let best=0,cur=0;for(let i=0;i<days;i++){if(pct(i)===100){cur++;best=Math.max(best,cur)}else cur=0}return best
+}
+function update(){
+ let done=0,total=days*tasks.length,points=0;
+ for(let i=0;i<days;i++){let p=pct(i);points+=state(i).filter(Boolean).length;if(p===100)done++}
+ document.getElementById("completedDays").textContent=done;
+ document.getElementById("overall").textContent=Math.round(points/total*100)+"%";
+ document.getElementById("streak").textContent=streak();
+ document.getElementById("best").textContent=bestStreak();
+ renderCalendar();
+}
+function renderCalendar(){
+ let c=document.getElementById("calendar");c.innerHTML="";
+ for(let i=0;i<days;i++){
+  let d=document.createElement("div");d.className="cal-day"+(pct(i)===100?" done":"")+(i===selected?" today":"");
+  d.innerHTML=`<div class="num">${i+1}</div><div>${fmt(dateFor(i))}</div><div class="pct">${pct(i)}%</div>`;
+  d.onclick=()=>{selected=i;document.getElementById("daySelect").value=i;localStorage.setItem("selectedDay",i);renderTasks();renderCalendar()};
+  c.appendChild(d);
+ }
+}
+renderSelect();renderTasks();update();
+</script>
+</body>
+</html>
