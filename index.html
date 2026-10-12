@@ -11,7 +11,7 @@
  --purple:#775cff;--orange:#ff9d32;--pink:#f33fbb;
 }
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 65% 0%,#0b2340 0,#030914 38%,#050607 100%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+body{margin:0;background:radial-gradient(circle at 65% 0%,#0b2340 0,#030914 38%,#02060d 100%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
 button,select{font:inherit}
 .app{display:flex;min-height:100vh}
 .sidebar{width:265px;position:fixed;left:0;top:0;bottom:0;background:linear-gradient(180deg,#041020,#020813);border-right:1px solid #0d2745;padding:24px 16px;z-index:5}
@@ -66,7 +66,7 @@ button,select{font:inherit}
   <div class="sidebar-bottom">
     <div style="font-size:27px;line-height:1.2;color:#fff;font-style:italic">Discipline<br><span style="color:#fff">today builds</span><br>the freedom<br>tomorrow.</div>
     <div style="height:80px;margin-top:15px;opacity:.7;font-size:48px">⛰️</div>
-    <div class="winter">❄ Winter Arc 2026<small>15 Oct 2026 — 31 Dec 2026</small></div>
+    <div class="winter">❄ Winter Arc 2026<small>15 Oct 2026 — 28 Dec 2026</small></div>
     <div class="mini-progress"><div id="mini"></div></div>
     <small id="sideDay" style="color:#8ca1b8">Day 1 / 75</small>
   </div>
@@ -83,7 +83,7 @@ button,select{font:inherit}
 </section>
 
 <section class="cards">
- <div class="card center"><div class="ring" id="ring"><span id="overall">0%</span></div><h3>Overall Progress</h3><small id="overallDays">0 / 92 days</small></div>
+ <div class="card center"><div class="ring" id="ring"><span id="overall">0%</span></div><h3>Overall Progress</h3><small id="overallDays">0 / 75 days</small></div>
  <div class="card center"><div class="icon orange">🔥</div><h3 class="orange">Current Streak</h3><div class="big orange" id="streak">0 days</div><small id="best">Best: 0 days</small></div>
  <div class="card center"><div class="icon purple">★</div><h3 class="purple">Perfect Days</h3><div class="big purple" id="perfect">0 days</div><small>(All goals done)</small></div>
  <div class="card center"><div class="icon cyan">🎯</div><h3 class="cyan">Today's Goals</h3><div class="big cyan"><span id="goalsDone">0</span> / 8</div><div class="mini-progress"><div id="goalBar" style="width:0;background:linear-gradient(90deg,#11d7b0,#13a8ff)"></div></div></div>
@@ -119,8 +119,8 @@ button,select{font:inherit}
 <section class="bottom-grid">
  <div class="panel"><div class="panel-head"><h2>🎯 Weekly Focus</h2><small>Non-negotiables</small></div><div class="focus">
   <div class="focus-item">📚<b>Study</b><span>Daily targets</span></div>
-  <div class="focus-item">💻<b>Coding</b><span>1 hour/day</span></div>
-  <div class="focus-item"><b>Spoken English</b><span> 1 hour/day</span></div>
+  <div class="focus-item">💻<b>Coding</b><span>30 min/day</span></div>
+  <div class="focus-item">🇬🇧<b>English</b><span>39 min/day</span></div>
   <div class="focus-item">🏋️<b>Fitness</b><span>Daily</span></div>
   <div class="focus-item">🚫<b>No Social</b><span>Daily</span></div>
   <div class="focus-item">😴<b>Sleep</b><span>Consistent</span></div>
@@ -132,8 +132,8 @@ button,select{font:inherit}
 <script>
 const tasks=[
 ["📚","Study Targets","Complete ALL daily study targets"],
-["💻","Coding (1 hour)","Minimum 30 minutes"],
-["Spoken English (1 hour)","Minimum 30 minutes"],
+["💻","Coding (30 min)","Minimum 30 minutes"],
+["🗣️","Spoken English (30 min)","Minimum 30 minutes"],
 ["🏋️","Fitness / Workout","Complete today's workout"],
 ["🚫","No Social Media","No unnecessary social media"],
 ["⏳","No Time Waste","Avoid unnecessary time waste"],
@@ -141,16 +141,17 @@ const tasks=[
 ["😴","Sleep","Maintain your planned sleep routine"]
 ];
 const quotes=[
-["Consistency beats talent, when talent doesn't work hard.","— Unknown"],
-["Discipline is the bridge between goals and achievement.","— Jim Rohn"],
-["You don't have to be great to start, but you have to start to be great.","— Zig Ziglar"],
-["Small steps every day lead to big results.","— Daily Discipline"],
-["Consistency turns small efforts into big results.","— Unknown"],
-["One disciplined day becomes a disciplined life.","— Daily Discipline"],
-["Motivation starts the journey; consistency keeps it moving.","— Daily Discipline"],
-["Do it even when you don't feel like doing it.","— Daily Discipline"]
- [“The pain of regret is more painful than the pain of failure.”,"— Nehal Yadav"],
- [“Your competition is the person you were yesterday.”,"— Unknown"],
+["Discipline beats motivation when motivation fades.","— Daily Discipline"],
+["Your future is created by what you do today.","— Daily Reminder"],
+["Dream big. Start small. Act now.","— Daily Reminder"],
+["Don't stop when you're tired. Stop when you're done.","— Daily Discipline"],
+["Small progress every day leads to big results.","— Daily Discipline"],
+["Work in silence. Let your success make the noise.","— Daily Reminder"],
+["Be stronger than your excuses.","— Daily Discipline"],
+["One day or day one. You decide.","— Daily Reminder"],
+["Consistency is the key to success.","— Daily Discipline"],
+["Become the person your future self will thank.","— Daily Reminder"],
+["The pain of regret is worse than the pain of failure.","— Daily Reminder"]
 ];
 const start=new Date(2026,9,15), totalDays=75;
 let data=JSON.parse(localStorage.getItem("fitWithNehal2026")||"{}");
@@ -219,12 +220,12 @@ function stats(){
  document.getElementById("ring").style.background=`conic-gradient(var(--green) ${overall*3.6}deg,#10283f ${overall*3.6}deg)`;
  document.getElementById("streak").textContent=streak()+" days";document.getElementById("best").textContent="Best: "+bestStreak()+" days";
  document.getElementById("perfect").textContent=perfect+" days";document.getElementById("goalsDone").textContent=getState(selected).filter(Boolean).length;
- document.getElementById("goalBar").style.width=(p)+"%";document.getElementById("mini").style.width=overall+"%";document.getElementById("sideDay").textContent=`Day ${selected+1} / 92`;
+ document.getElementById("goalBar").style.width=(p)+"%";document.getElementById("mini").style.width=overall+"%";document.getElementById("sideDay").textContent=`Day ${selected+1} / 75`;
  const now=new Date(),h=now.getHours();document.getElementById("greeting").textContent=(h<12?"Good Morning":h<17?"Good Afternoon":"Good Evening")+", Nehal! 👋";
  document.getElementById("todayDate").textContent=fmt(now);
  const q=quotes[selected%quotes.length];document.getElementById("heroQuote").textContent="“"+q[0]+"”";document.getElementById("motivation").textContent=q[0];
 }
-function render(){document.getElementById("daySelect").value=selected;renderTasks();renderSubjects();renderCalendar();stats();document.getElementById("quotes").innerHTML=quotes.slice(0,4).map(q=>`<div class="quote"><p>“${q[0]}”</p><small>${q[1]}</small></div>`).join("")}
+function render(){document.getElementById("daySelect").value=selected;renderTasks();renderSubjects();renderCalendar();stats();document.getElementById("quotes").innerHTML=quotes.map(q=>`<div class="quote"><p>“${q[0]}”</p><small>${q[1]}</small></div>`).join("")}
 function save(){localStorage.setItem("fitWithNehal2026",JSON.stringify(data));render()}
 function completeAll(){data[key(selected)]=Array(tasks.length).fill(true);save()}
 renderSelect();render();
