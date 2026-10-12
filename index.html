@@ -66,9 +66,9 @@ button,select{font:inherit}
   <div class="sidebar-bottom">
     <div style="font-size:27px;line-height:1.2;color:#fff;font-style:italic">Discipline<br><span style="color:#fff">today builds</span><br>the freedom<br>tomorrow.</div>
     <div style="height:80px;margin-top:15px;opacity:.7;font-size:48px">⛰️</div>
-    <div class="winter">❄ Winter Arc 2026<small>1 Oct 2026 — 31 Dec 2026</small></div>
+    <div class="winter">❄ Winter Arc 2026<small>15 Oct 2026 — 31 Dec 2026</small></div>
     <div class="mini-progress"><div id="mini"></div></div>
-    <small id="sideDay" style="color:#8ca1b8">Day 1 / 92</small>
+    <small id="sideDay" style="color:#8ca1b8">Day 1 / 75</small>
   </div>
 </aside>
 
@@ -107,7 +107,7 @@ button,select{font:inherit}
   </div>
  </div>
  <div class="panel">
-  <div class="cal-head"><h2>🗓️ 92-Day Calendar</h2><span style="color:#7f95ac;font-size:12px">Oct–Dec 2026</span></div>
+  <div class="cal-head"><h2>🗓️ 75-Day Calendar</h2><span style="color:#7f95ac;font-size:12px">Oct–Dec 2026</span></div>
   <div class="cal-grid" id="calendar"></div>
  </div>
  <div class="panel quotes-panel">
@@ -119,8 +119,8 @@ button,select{font:inherit}
 <section class="bottom-grid">
  <div class="panel"><div class="panel-head"><h2>🎯 Weekly Focus</h2><small>Non-negotiables</small></div><div class="focus">
   <div class="focus-item">📚<b>Study</b><span>Daily targets</span></div>
-  <div class="focus-item">💻<b>Coding</b><span>30 min/day</span></div>
-  <div class="focus-item">🇬🇧<b>English</b><span>39 min/day</span></div>
+  <div class="focus-item">💻<b>Coding</b><span>1 hour/day</span></div>
+  <div class="focus-item"><b>Spoken English</b><span> 1 hour/day</span></div>
   <div class="focus-item">🏋️<b>Fitness</b><span>Daily</span></div>
   <div class="focus-item">🚫<b>No Social</b><span>Daily</span></div>
   <div class="focus-item">😴<b>Sleep</b><span>Consistent</span></div>
@@ -132,8 +132,8 @@ button,select{font:inherit}
 <script>
 const tasks=[
 ["📚","Study Targets","Complete ALL daily study targets"],
-["💻","Coding (30 min)","Minimum 30 minutes"],
-["🇬🇧","Spoken English (39 min)","Minimum 39 minutes"],
+["💻","Coding (1 hour)","Minimum 30 minutes"],
+["Spoken English (1 hour)","Minimum 30 minutes"],
 ["🏋️","Fitness / Workout","Complete today's workout"],
 ["🚫","No Social Media","No unnecessary social media"],
 ["⏳","No Time Waste","Avoid unnecessary time waste"],
@@ -149,8 +149,10 @@ const quotes=[
 ["One disciplined day becomes a disciplined life.","— Daily Discipline"],
 ["Motivation starts the journey; consistency keeps it moving.","— Daily Discipline"],
 ["Do it even when you don't feel like doing it.","— Daily Discipline"]
+ [“The pain of regret is more painful than the pain of failure.”,"— Nehal Yadav"],
+ [“Your competition is the person you were yesterday.”,"— Unknown"],
 ];
-const start=new Date(2026,9,1), totalDays=92;
+const start=new Date(2026,9,15), totalDays=75;
 let data=JSON.parse(localStorage.getItem("fitWithNehal2026")||"{}");
 let selected=Number(localStorage.getItem("selectedDay")||0);
 const key=i=>"d"+i;
@@ -213,7 +215,7 @@ function bestStreak(){let b=0,c=0;for(let i=0;i<totalDays;i++){if(pct(i)===100){
 function stats(){
  let points=0,perfect=0;for(let i=0;i<totalDays;i++){points+=getState(i).filter(Boolean).length;if(pct(i)===100)perfect++}
  const overall=Math.round(points/(totalDays*tasks.length)*100), p=pct(selected);
- document.getElementById("overall").textContent=overall+"%";document.getElementById("overallDays").textContent=`${Math.round(points/tasks.length)} / 92 days`;
+ document.getElementById("overall").textContent=overall+"%";document.getElementById("overallDays").textContent=`${Math.round(points/tasks.length)} / 75 days`;
  document.getElementById("ring").style.background=`conic-gradient(var(--green) ${overall*3.6}deg,#10283f ${overall*3.6}deg)`;
  document.getElementById("streak").textContent=streak()+" days";document.getElementById("best").textContent="Best: "+bestStreak()+" days";
  document.getElementById("perfect").textContent=perfect+" days";document.getElementById("goalsDone").textContent=getState(selected).filter(Boolean).length;
