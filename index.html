@@ -66,9 +66,9 @@ button,select{font:inherit}
   <div class="sidebar-bottom">
     <div style="font-size:27px;line-height:1.2;color:#fff;font-style:italic">Discipline<br><span style="color:#fff">today builds</span><br>the freedom<br>tomorrow.</div>
     <div style="height:80px;margin-top:15px;opacity:.7;font-size:48px">⛰️</div>
-    <div class="winter">❄ Winter Arc 2026<small>15 Oct 2026 — 28 Dec 2026</small></div>
+    <div class="winter">❄ Winter Arc 2026<small>1 November 2026 — 31 December 2026</small></div>
     <div class="mini-progress"><div id="mini"></div></div>
-    <small id="sideDay" style="color:#8ca1b8">Day 1 / 75</small>
+    <small id="sideDay" style="color:#8ca1b8">Day 1 / 60</small>
   </div>
 </aside>
 
@@ -83,7 +83,7 @@ button,select{font:inherit}
 </section>
 
 <section class="cards">
- <div class="card center"><div class="ring" id="ring"><span id="overall">0%</span></div><h3>Overall Progress</h3><small id="overallDays">0 / 75 days</small></div>
+ <div class="card center"><div class="ring" id="ring"><span id="overall">0%</span></div><h3>Overall Progress</h3><small id="overallDays">0 / 60 days</small></div>
  <div class="card center"><div class="icon orange">🔥</div><h3 class="orange">Current Streak</h3><div class="big orange" id="streak">0 days</div><small id="best">Best: 0 days</small></div>
  <div class="card center"><div class="icon purple">★</div><h3 class="purple">Perfect Days</h3><div class="big purple" id="perfect">0 days</div><small>(All goals done)</small></div>
  <div class="card center"><div class="icon cyan">🎯</div><h3 class="cyan">Today's Goals</h3><div class="big cyan"><span id="goalsDone">0</span> / 8</div><div class="mini-progress"><div id="goalBar" style="width:0;background:linear-gradient(90deg,#11d7b0,#13a8ff)"></div></div></div>
@@ -107,7 +107,7 @@ button,select{font:inherit}
   </div>
  </div>
  <div class="panel">
-  <div class="cal-head"><h2>🗓️ 75-Day Calendar</h2><span style="color:#7f95ac;font-size:12px">Oct–Dec 2026</span></div>
+  <div class="cal-head"><h2>🗓️ 60-Day Calendar</h2><span style="color:#7f95ac;font-size:12px">Nov–Dec 2026</span></div>
   <div class="cal-grid" id="calendar"></div>
  </div>
  <div class="panel quotes-panel">
@@ -120,7 +120,7 @@ button,select{font:inherit}
  <div class="panel"><div class="panel-head"><h2>🎯 Weekly Focus</h2><small>Non-negotiables</small></div><div class="focus">
   <div class="focus-item">📚<b>Study</b><span>Daily targets</span></div>
   <div class="focus-item">💻<b>Coding</b><span>30 min/day</span></div>
-  <div class="focus-item">🇬🇧<b>English</b><span>39 min/day</span></div>
+  <div class="focus-item">🇬🇧<b>English</b><span>30 min/day</span></div>
   <div class="focus-item">🏋️<b>Fitness</b><span>Daily</span></div>
   <div class="focus-item">🚫<b>No Social</b><span>Daily</span></div>
   <div class="focus-item">😴<b>Sleep</b><span>Consistent</span></div>
@@ -153,7 +153,7 @@ const quotes=[
 ["Become the person your future self will thank.","— Daily Reminder"],
 ["The pain of regret is worse than the pain of failure.","— Daily Reminder"]
 ];
-const start=new Date(2026,9,15), totalDays=75;
+const start=new Date(2026,11,01), totalDays=60;
 let data=JSON.parse(localStorage.getItem("fitWithNehal2026")||"{}");
 let selected=Number(localStorage.getItem("selectedDay")||0);
 const key=i=>"d"+i;
@@ -216,7 +216,7 @@ function bestStreak(){let b=0,c=0;for(let i=0;i<totalDays;i++){if(pct(i)===100){
 function stats(){
  let points=0,perfect=0;for(let i=0;i<totalDays;i++){points+=getState(i).filter(Boolean).length;if(pct(i)===100)perfect++}
  const overall=Math.round(points/(totalDays*tasks.length)*100), p=pct(selected);
- document.getElementById("overall").textContent=overall+"%";document.getElementById("overallDays").textContent=`${Math.round(points/tasks.length)} / 75 days`;
+ document.getElementById("overall").textContent=overall+"%";document.getElementById("overallDays").textContent=`${Math.round(points/tasks.length)} / 60 days`;
  document.getElementById("ring").style.background=`conic-gradient(var(--green) ${overall*3.6}deg,#10283f ${overall*3.6}deg)`;
  document.getElementById("streak").textContent=streak()+" days";document.getElementById("best").textContent="Best: "+bestStreak()+" days";
  document.getElementById("perfect").textContent=perfect+" days";document.getElementById("goalsDone").textContent=getState(selected).filter(Boolean).length;
